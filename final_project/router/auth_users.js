@@ -12,9 +12,9 @@ const isValid = (username)=>{ //returns boolean
     });
 
     if (userswithsamename.length > 0) {
-        return true;
-    } else {
         return false;
+    } else {
+        return true;
     }
 }
 
@@ -34,8 +34,8 @@ const authenticatedUser = (username,password)=>{ //returns boolean
 //only registered users can login
 regd_users.post("/login", (req,res) => {
   //Write your code here
-  const username = req.params.username;
-  const password = req.params.password;
+  const username = req.body.username;
+  const password = req.body.password;
 
   if (!username || !password) {
     res.send.status(404).json({ message : "Error loging in" })

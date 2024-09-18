@@ -7,10 +7,10 @@ const public_users = express.Router();
 
 public_users.post("/register", (req,res) => {
   //Write your code here
-  const username = req.params.username;
-  const password = req.params.password;
+  const username = req.body.username;
+  const password = req.body.password;
 
-  if (username || password) {
+  if (username && password) {
     if(isValid(username)) {
         users.push({"username": username, "password": password});
         return res.status(200).json({message: "User successfully registered. Now you can login"});
@@ -19,7 +19,7 @@ public_users.post("/register", (req,res) => {
     }
   }
 
-  return res.status(404).json({message: "Unable to register user."});
+  return res.status(404).json({message: "Unable to register user. Please provide username and password"});
   //return res.status(300).json({message: "Yet to be implemented"});
 });
 
